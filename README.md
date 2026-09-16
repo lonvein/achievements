@@ -6,11 +6,11 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?logo=opencv&logoColor=white)
 
-Репозиторий содержит подборку практических проектов, учебно-исследовательских ML/CV-работ и алгоритмических решений: физически-обоснованная реконструкция изображений в рассеивающей среде, rule-based NLP-пайплайн для e-commerce и набор задач по алгоритмам/структурам данных.
+Репозиторий содержит подборку практических проектов, учебно-исследовательских ML/CV-работ и алгоритмических решений: физически-обоснованная реконструкция изображений в рассеивающей среде, правило-ориентированный NLP-пайплайн для e-commerce и набор задач по алгоритмам/структурам данных.
 
 ---
 
-## Навигация по репозиторию (Repository Structure)
+## Навигация по репозиторию
 
 ```text
 /
@@ -45,7 +45,7 @@
 
 ---
 
-## Детальный разбор проектов (Featured Projects Breakdown)
+## Детальный разбор проектов
 
 ### 1) Численное моделирование и восстановление изображений через рассеивающую среду
 **📁 /qoc(optics_mipt)**
@@ -61,11 +61,11 @@
   - `d1_1_d2_8.ipynb`: `d1=0.001`, `d2=0.008`  
   - `ai_studio_code.ipynb`: `d1=0.001`, `d2=0.002`  
   - `d1_0_d2_8_noise.ipynb`: шумовой стресс-тест по SNR.
-- Dataset pipeline: синтетика на базе `torchvision.datasets.MNIST`, сборка выборок `X_train/Y_train` и `X_val/Y_val` (`3000` train, `500` val), `DataLoader(batch_size=32)`.
+- Пайплайн датасета: синтетика на базе `torchvision.datasets.MNIST`, сборка выборок `X_train/Y_train` и `X_val/Y_val` (`3000` train, `500` val), `DataLoader(batch_size=32)`.
 - Модель: U-Net (`DoubleConv`, encoder/decoder skip-connections).
-- Loss: гибрид `HybridLoss = α*MSE + (1-α)*(1-SSIM)`, `α=0.2`.
+- Функция потерь: гибрид `HybridLoss = α*MSE + (1-α)*(1-SSIM)`, `α=0.2`.
 - Оптимизация: `Adam`, scheduler `ReduceLROnPlateau`, обучение `15` эпох.
-- Бейзлайн: классический `fienup_hio` (Hybrid Input-Output, 400–500 итераций).
+- Базовый классический метод: `fienup_hio` (Hybrid Input-Output, 400–500 итераций).
 
 **Метрики и результаты**  
 - `ai_studio_code.ipynb`:  
@@ -84,7 +84,7 @@
   - для `SNR=100 dB`: `0.9323` vs `0.1035`.  
   U-Net стабильно превосходит HIO на всем диапазоне SNR.
 
-**Ключевые файлы/entry points**  
+**Ключевые файлы для запуска**  
 - `/qoc(optics_mipt)/ai_studio_code.ipynb`  
 - `/qoc(optics_mipt)/d1_0_d2_8.ipynb`  
 - `/qoc(optics_mipt)/d1_1_d2_8.ipynb`  
@@ -95,7 +95,7 @@
 
 ---
 
-### 2) Rule-based извлечение атрибутов e-commerce запросов
+### 2) Правило-ориентированное извлечение атрибутов e-commerce запросов
 **📁 /e-commerce_rule_based_attributes**
 
 **Задача и физико-математическая суть**  
@@ -112,17 +112,17 @@
 
 **Метрики и результаты**  
 - Объем: `20000` уникальных запросов (`100%` уникальности, `0%` пропусков).  
-- Coverage по атрибутам:  
+- Покрытие по атрибутам:  
   - Category: `~37.2%`  
   - Colors: `~6.9%`  
   - Sizes & Specs: `~21.6%`  
   - Brands: `~22.0%`  
   - Target Group: `~12.4%`
-- Ручной аудит micro-validation:  
+- Ручной аудит (микро-валидация):  
   - `~88–92%` точность для структурированных атрибутов (размеры/цвета);  
   - около `50%` корректности полного разбиения запроса по всем атрибутам (просадка на редких категориях и long-tail кейсах).
 
-**Ключевые файлы/entry points**  
+**Ключевые файлы для запуска**  
 - `/e-commerce_rule_based_attributes/Карпунин Егор Сергеевич. Data Scientis. Понимание запросов.pdf` (полный пайплайн, код и анализ в отчете).
 
 **Стек**  
@@ -157,7 +157,7 @@
 
 ---
 
-## Инструкция по установке и запуску (Quickstart & Reproducibility)
+## Инструкция по установке и запуску
 
 > В репозитории отсутствует `requirements.txt`, поэтому зависимости ставятся вручную.
 
@@ -190,25 +190,25 @@ pip install numpy matplotlib torch torchvision scikit-image pillow tqdm pandas s
 
 ### 4) Запуск основных проектов
 
-#### CV / Optical inverse problem (ноутбуки)
+#### CV / Задача обратного восстановления в оптике (ноутбуки)
 ```bash
-jupyter notebook "/home/runner/work/achievements/achievements/qoc(optics_mipt)/d1_0_d2_8.ipynb"
+jupyter notebook "qoc(optics_mipt)/d1_0_d2_8.ipynb"
 ```
 Аналогично можно запускать:
-- `/home/runner/work/achievements/achievements/qoc(optics_mipt)/d1_1_d2_8.ipynb`
-- `/home/runner/work/achievements/achievements/qoc(optics_mipt)/d1_0_d2_8_noise.ipynb`
-- `/home/runner/work/achievements/achievements/qoc(optics_mipt)/ai_studio_code.ipynb`
+- `qoc(optics_mipt)/d1_1_d2_8.ipynb`
+- `qoc(optics_mipt)/d1_0_d2_8_noise.ipynb`
+- `qoc(optics_mipt)/ai_studio_code.ipynb`
 
 #### Алгоритмические решения (stdin/stdout)
 ```bash
-python "/home/runner/work/achievements/achievements/PY CONTESTS 2 SEM/1 contest/2.py" < input.txt
-python "/home/runner/work/achievements/achievements/PY CONTESTS 2 SEM/3 contest/3.py" < input.txt
+python "PY CONTESTS 2 SEM/1 contest/2.py" < input.txt
+python "PY CONTESTS 2 SEM/3 contest/3.py" < input.txt
 ```
 
-#### E-commerce attribute extraction
+#### Извлечение атрибутов e-commerce
 Практическая реализация и аналитика находятся в PDF-отчете:
 ```text
-/home/runner/work/achievements/achievements/e-commerce_rule_based_attributes/Карпунин Егор Сергеевич. Data Scientis. Понимание запросов.pdf
+e-commerce_rule_based_attributes/Карпунин Егор Сергеевич. Data Scientis. Понимание запросов.pdf
 ```
 
 ---
